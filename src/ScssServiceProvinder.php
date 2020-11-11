@@ -1,21 +1,11 @@
 <?php
 
-
-namespace thangtn\scss;
+namespace Thangtn\Scss;
 
 use Illuminate\Support\ServiceProvider;
 
 class ScssServiceProvinder extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 
     /**
      * Bootstrap any application services.
@@ -23,6 +13,22 @@ class ScssServiceProvinder extends ServiceProvider
      * @return void
      */
     public function boot()
+    {
+        'providers' => [
+            /*
+                 * Application Service Providers...
+                 */
+
+                App\Providers\RouteServiceProvider::class,
+                lyhuynh\firstpackage\FirstPackageServiceProvider::class,
+        ]
+    }
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
     {
         //
     }

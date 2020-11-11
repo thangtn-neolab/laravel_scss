@@ -1,6 +1,7 @@
 <?php
 
-namespace thangtn\scss;
+namespace Thangtn\Scss;
+
 if( class_exists( 'scssc' ) ){
 
 	class compile_scss{

@@ -42,7 +42,7 @@
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-namespace thangtn\scss;
+namespace Thangtn\Scss;
 
 if( !class_exists( 'scssc' ) )
 {
