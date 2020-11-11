@@ -8,7 +8,7 @@
             "role": "Developer"
         }
     ],
-    "type": "metapackage",
+    "type": "library",
     "license": "MIT",
     "require": {},
     "autoload": {
