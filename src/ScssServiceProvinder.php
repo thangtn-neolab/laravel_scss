@@ -14,14 +14,7 @@ class ScssServiceProvinder extends ServiceProvider
      */
     public function boot()
     {
-        'providers' => [
-            /*
-                 * Application Service Providers...
-                 */
 
-                App\Providers\RouteServiceProvider::class,
-                lyhuynh\firstpackage\FirstPackageServiceProvider::class,
-        ]
     }
     /**
      * Register any application services.
