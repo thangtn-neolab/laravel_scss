@@ -1,0 +1,19 @@
+{
+    "name": "thangtn/scss",
+    "description": "compile scss to css",
+    "authors": [
+        {
+            "name": "TNT",
+            "email": "thang.tn@neo-lab.vn",
+            "role": "Developer"
+        }
+    ],
+    "type": "metapackage",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "thangtn\\scss\\": "src/"
+        }
+    }
+}
