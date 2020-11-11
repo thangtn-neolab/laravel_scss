@@ -1,6 +1,6 @@
 <?php
 
-namespace Thangtn\Scss;
+namespace Scss\Scss;
 
 use Illuminate\Support\ServiceProvider;
 
