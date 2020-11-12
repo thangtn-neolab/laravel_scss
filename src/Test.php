@@ -4,7 +4,12 @@ namespace Scss\Scss;
 
 class Test
 {
-    public function run()
+    function __construct()
+    {
+        echo 'run1';
+    }
+
+    public static function run()
     {
         return 'run';
     }
