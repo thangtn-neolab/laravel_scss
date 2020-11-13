@@ -50,7 +50,8 @@ class CompileScss
          * */
         if ( !file_exists($this->dir_setting) ) {
             try {
-                mkdir($this->dir_setting, 0755, true );
+                $filesystem = new Filesystem();
+                $filesystem->makeDirectory($this->dir_setting, 0755, true );
             } catch ( \Exception $exception ) {
                 echo 'Error: ' . $exception->getMessage();
             }
@@ -71,7 +72,8 @@ class CompileScss
                 ';
                 if ( file_exists($dir_setting . $file_setting) )
                 {
-                    file_put_contents($dir_setting . $file_setting, $json_data);
+                    $filesystem = new Filesystem();
+                    $filesystem->replace($dir_setting . $file_setting, $json_data);
                 }
 
             } catch ( \Exception $exception ) {
@@ -89,19 +91,27 @@ class CompileScss
         $this->dir_scss = $this->root_dir . '/' . $content_obj->SCSS_DIR;
         $this->dir_css = $this->root_dir . '/' . $content_obj->CSS_DIR;
 
+        if( !is_dir($this->root_dir . '/' . $content_obj->CSS_DIR) ) {
+            try {
+                $filesystem->makeDirectory($this->dir_css, 0755, true );
+            } catch ( \Exception $exception ) {
+                echo 'Error: ' . $exception->getMessage();
+            }
+        }
+
+        if( !is_dir($this->root_dir . '/' . $content_obj->SCSS_DIR) ) {
+            try {
+                $filesystem->makeDirectory($this->dir_scss, 0755, true );
+            } catch ( \Exception $exception ) {
+                echo 'Error: ' . $exception->getMessage();
+            }
+        }
     }
 
     public function genaral_file( $file )
     {
         $filesystem = new Filesystem();
 
-        if ( !file_exists($this->dir_css) ) {
-            try {
-                mkdir($this->dir_css, 0755, true );
-            } catch ( \Exception $exception ) {
-                echo 'Error: ' . $exception->getMessage();
-            }
-        }
         $this->scss->setFormatter("scss_formatter_compressed");
         $filesystem->replace($this->dir_css . $file . '.css', $this->get_compile_css( $file ) );
 
@@ -121,8 +131,10 @@ class CompileScss
                 if( substr($file, 0, 1) != "_" ){
                     $this->genaral_file( pathinfo( $file, PATHINFO_FILENAME ) );
                 }
+            } else {
+                $filesystem = new Filesystem();
+                $filesystem->delete( $this->dir_scss . $file );
             }
-
         }
     }
 
