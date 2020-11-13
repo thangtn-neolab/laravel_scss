@@ -31,7 +31,6 @@ class CompileScss
 
         $this->scss = new Scssc();
 
-
         /* import path libary scss */
         $this->scss->setImportPaths( $this->dir_scss );
         /* import path file compile over time */
@@ -44,13 +43,13 @@ class CompileScss
     {
         $dir_setting = $this->root_dir . '/ScssSetting/';
         $file_setting = 'compile_setting.json';
+        $filesystem = new Filesystem();
 
         /*
          * create folder save file compile_setting.json if directory not exits
          * */
-        if ( !file_exists($this->dir_setting) ) {
+        if ( !is_dir($this->dir_setting) ) {
             try {
-                $filesystem = new Filesystem();
                 $filesystem->makeDirectory($this->dir_setting, 0755, true );
             } catch ( \Exception $exception ) {
                 echo 'Error: ' . $exception->getMessage();
@@ -60,7 +59,6 @@ class CompileScss
         /*
         * create file compile_setting.json if files not exits
         * */
-
         if ( !file_exists($this->dir_setting . $file_setting) ) {
             try {
                 touch($dir_setting . $file_setting, strtotime('-1 days'));
@@ -72,7 +70,6 @@ class CompileScss
                 ';
                 if ( file_exists($dir_setting . $file_setting) )
                 {
-                    $filesystem = new Filesystem();
                     $filesystem->replace($dir_setting . $file_setting, $json_data);
                 }
 
@@ -81,7 +78,6 @@ class CompileScss
             }
         }
     }
-
 
     public function Create_folder_Compile()
     {
@@ -124,6 +120,7 @@ class CompileScss
 
     public function exec()
     {
+        $filesystem = new Filesystem();
         $files = array_diff( (array)scandir($this->dir_scss), array('..', '.') );
 
         foreach ( $files as $file ) {
@@ -132,7 +129,6 @@ class CompileScss
                     $this->genaral_file( pathinfo( $file, PATHINFO_FILENAME ) );
                 }
             } else {
-                $filesystem = new Filesystem();
                 $filesystem->delete( $this->dir_scss . $file );
             }
         }

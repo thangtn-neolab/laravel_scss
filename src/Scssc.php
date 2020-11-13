@@ -12,6 +12,7 @@ use Scss\Scss\scss_formatter_compressed;
 use Scss\Scss\scss_formatter;
 use Scss\Scss\scss_formatter_nested;
 use Scss\Scss\scss_server;
+use Exception;
 
 class Scssc {
 	static public $VERSION = 'v0.0.12';

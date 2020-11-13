@@ -3,6 +3,7 @@
 
 namespace Scss\Scss;
 
+use Exception;
 
 class scss_server {
     /**

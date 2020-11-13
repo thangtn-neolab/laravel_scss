@@ -2,6 +2,7 @@
 namespace Scss\Scss;
 
 use Scss\Scss\Scssc;
+use Exception;
 
 class scss_parser {
     static protected $precedence = array(
