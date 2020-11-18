@@ -124,14 +124,13 @@ class Scssc {
 
 		$i = count($this->extends);
 		$this->extends[] = array($target, $origin);
-
 		foreach ($target as $part) {
 			if (isset($this->extendsMap[$part])) {
 				$this->extendsMap[$part][] = $i;
-			} else {
+            } else {
 				$this->extendsMap[$part] = array($i);
-			}
-		}
+            }
+        }
 	}
 
 	protected function makeOutputBlock($type, $selectors = null) {
@@ -186,7 +185,7 @@ class Scssc {
 
 			$outOrigin = array_merge($outOrigin, $origin);
 
-			$found = true;
+            $found = true;
 		}
 
 		return $found;
@@ -196,7 +195,8 @@ class Scssc {
 		$tag = null;
 		$out = array();
 
-		foreach (array($base, $other) as $single) {
+
+		foreach (array($other, $base) as $single) {
 			foreach ($single as $part) {
 				if (preg_match('/^[^\[.#:]/', $part)) {
 					$tag = $part;
@@ -210,6 +210,7 @@ class Scssc {
 			array_unshift($out, $tag);
 		}
 
+        $out = array_reverse($out, true);
 		return $out;
 	}
 
