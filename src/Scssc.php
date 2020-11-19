@@ -195,12 +195,15 @@ class Scssc {
 		$tag = null;
 		$out = array();
 
+		if( empty( $other ) ){
+		    return $base;
+        }
 
 		foreach (array($other, $base) as $single) {
 			foreach ($single as $part) {
 				if (preg_match('/^[^\[.#:]/', $part)) {
 					$tag = $part;
-				} else {
+                } else {
 					$out[] = $part;
 				}
 			}
@@ -210,8 +213,7 @@ class Scssc {
 			array_unshift($out, $tag);
 		}
 
-        $out = array_reverse($out, true);
-		return $out;
+        return $out;
 	}
 
 	protected function matchExtends($selector, &$out, $from = 0, $initial=true) {
@@ -2631,6 +2633,3 @@ class Scssc {
 		'yellowgreen' => '154,205,50'
 	);
 }
-
-
-
